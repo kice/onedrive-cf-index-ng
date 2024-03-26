@@ -7,6 +7,7 @@ import apiConfig from '../../../config/api.config'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { revealObfuscatedToken } from '../../utils/oAuthHandler'
 
 export default function OAuthStep1() {
   const router = useRouter()
@@ -45,7 +46,7 @@ export default function OAuthStep1() {
                       CLIENT_ID
                     </td>
                     <td className="whitespace-nowrap px-3 py-1 text-gray-500 dark:text-gray-400">
-                      <code className="font-mono text-sm">{apiConfig.clientId}</code>
+                      <code className="font-mono text-sm">{apiConfig.clientId.substring(0, 10)}...</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
@@ -53,7 +54,7 @@ export default function OAuthStep1() {
                       CLIENT_SECRET*
                     </td>
                     <td className="whitespace-nowrap px-3 py-1 text-gray-500 dark:text-gray-400">
-                      <code className="font-mono text-sm">{apiConfig.obfuscatedClientSecret}</code>
+                      <code className="font-mono text-sm">{revealObfuscatedToken(apiConfig.obfuscatedClientSecret).substring(0, 10)}...</code>
                     </td>
                   </tr>
                   <tr className="border-y bg-white dark:border-gray-700 dark:bg-gray-900">
